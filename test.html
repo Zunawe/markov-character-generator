@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="./markovPredictor.js"></script>
+		<script>
+			var cc = new CharacterChain(10);
+
+			function feed(){
+				cc.feed(document.getElementById('input').value);
+				document.getElementById('input').value = '';
+			}
+
+			function generate(){
+				document.getElementById('output').innerHTML = generateString(cc, 1000);
+			}
+
+			function reset(){
+				document.getElementById('output').innerHTML = '';
+				document.getElementById('input').value = '';
+				cc = new CharacterChain(10);
+			}
+		</script>
+		<style>
+			body {
+				margin-top: 0px;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<textarea id="input" rows="8" cols="100" style="width: 600px; margin: 100px"></textarea>
+		<div>
+			<button onclick="feed()">Feed</button>
+			<button onclick="generate()">Generate</button>
+			<button onclick="reset()">Reset</button>
+		</div>
+		<p id="output"></p>
+	</body>
+</html>
